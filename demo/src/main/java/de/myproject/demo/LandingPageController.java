@@ -14,7 +14,7 @@ public class LandingPageController {
     
     @GetMapping("/")
     public String start(Model model, Locale locale) {
-        
+
         model.addAttribute("erstesErgebnis", 0);
         model.addAttribute("zweitesErgebnis", 0);
         model.addAttribute("drittesErgebnis", 0);
@@ -23,9 +23,8 @@ public class LandingPageController {
     }
     
     @PostMapping("/result")
-    public String resultPage(Model model, Locale locale) {
+    public String resultPage(Model model, Locale locale, examResult examResult) {
 
-        examResult examResult = new examResult(0, 0, 0);
         model.addAttribute("erstesErgebnis", examResult.r1);
         model.addAttribute("zweitesErgebnis", examResult.r2);
         model.addAttribute("drittesErgebnis", examResult.r3);
@@ -34,9 +33,9 @@ public class LandingPageController {
         String ergebnisString = examResult.RechnerString();
         boolean ergebnisBoolean = examResult.RechnerBoolean();
 
-        model.addAttribute("erstesErgebnis", ergebnisDouble);
-        model.addAttribute("zweitesErgebnis", ergebnisString);
-        model.addAttribute("drittesErgebnis", ergebnisBoolean);
+        model.addAttribute("ergebnis", ergebnisDouble);
+        model.addAttribute("ergebnisString", ergebnisString);
+
         
         return "portfolio";
     }
@@ -45,7 +44,7 @@ public class LandingPageController {
 
         public double Rechner(){
 
-            double result = (r1 * 0.2) + (r2 * 0.2) + (r3 *0.6);
+            double result = ((r1 * 0.2) + (r2 * 0.2) + (r3 *0.6));
 
             return result;
 

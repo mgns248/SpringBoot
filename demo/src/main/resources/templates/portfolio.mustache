@@ -21,22 +21,45 @@
         </div>
 
         <div>
-
-            <form action="" method="post">
+            <form action="/result" method="POST" accept-charset="utf-8">
                 
                 <label>1. Prüfungsergebnis</label>
-                <input name="erstesErgebnis" type="number" min="0" max="100"/>
+                <input name="r1" type="number" required min="0" max="100"/>
 
-                <label>1. Prüfungsergebnis</label>
-                <input name="zweitesErgebnis" type="number" min="0" max="100"/>
+                <label>2. Prüfungsergebnis</label>
+                <input name="r2" type="number" required min="0" max="100"/>
 
-                <label>1. Prüfungsergebnis</label>
-                <input name="r3" type="number" min="0" max="100"/>
+                <label>2. Prüfungsergebnis</label>
+                <input name="r3" type="number" required min="0" max="100"/>
 
-                <button type="submit"> </button>
+                <button type="submit">Submit</button>
 
             </form>
-        </diV>
+        </div>
+
+        <div>
+
+            <p>Ergebnis</p>
+            <p> 
+                {{#ergebnis}}
+                    {{ergebnis}}
+                {{/ergebnis}}
+
+                {{^ergebnis}}
+                    <em>Gebe die Ergebnisse ein</em>
+                {{/ergebnis}}
+            </p>
+            <p>
+                {{#ergebnisString}}
+                    {{ergebnisString}}
+                {{/ergebnisString}}
+
+                {{^ergebnisString}}
+                    <em>Gebe die Ergebnisse ein</em>
+                {{/ergebnisString}}
+            </p>
+
+        </div>
 
     </body>
 
