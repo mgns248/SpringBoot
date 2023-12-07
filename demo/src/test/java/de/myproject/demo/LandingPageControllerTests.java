@@ -7,14 +7,11 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import org.springframework.test.web.servlet.RequestBuilder;
 
-import de.myproject.demo.LandingPageController.examResult;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.io.UnsupportedEncodingException; 
 
 @WebMvcTest
 public class LandingPageControllerTests {
@@ -46,7 +43,7 @@ public class LandingPageControllerTests {
                 "        </div>");
 
     }
-    
+
     @Test
     void testResultPageGreen() throws Exception {
 
