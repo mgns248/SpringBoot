@@ -12,55 +12,72 @@
     </head>
 
     <body>
+    <div class="wrapper">
+        <div class=headers>
+            <div>
+                <h1>Der</h1>
+            </div>
 
-        <div>
-            <h1>Der</h1>
-            <h1>Ultimative</h1>
-            <h1>Portfolio</h1>
-            <h1>Rechner</h1>
+            <div>
+                <h1>Ultimative</h1>
+            </div>
+
+            <div>
+                <h1>Portfolio</h1>
+            </div>
+
+            <div>
+                <h1>Rechner</h1>
+            </div>
         </div>
 
-        <div>
-            <form action="/result" method="POST" accept-charset="utf-8">
+        <div class="rechner">
+            <form class="form" action="/result" method="POST" accept-charset="utf-8">
                 
-                <label>1. Prüfungsergebnis</label>
-                <input name="r1" type="number" required min="0" max="100"/>
+                <div>
+                    <label>1. Prüfungsergebnis</label>
+                    <input name="r1" type="number" required min="0" max="100"/>
+                </div>
 
-                <label>2. Prüfungsergebnis</label>
-                <input name="r2" type="number" required min="0" max="100"/>
+                <div>
+                    <label>2. Prüfungsergebnis</label>
+                    <input name="r2" type="number" required min="0" max="100"/>
+                </div>
 
-                <label>2. Prüfungsergebnis</label>
-                <input name="r3" type="number" required min="0" max="100"/>
+                <div>
+                    <label>2. Prüfungsergebnis</label>
+                    <input name="r3" type="number" required min="0" max="100"/>
+                </div>
 
                 <button type="submit">Submit</button>
 
             </form>
         </div>
 
-        <div>
+        <div class="ergebnis {{#cssClass}}{{cssClass}}{{/cssClass}}">
+            <div class="ergebnisDiv">
+                <p>Ergebnis</p>
+                <p> 
+                    {{#ergebnis}}
+                        {{ergebnis}}
+                    {{/ergebnis}}
 
-            <p>Ergebnis</p>
-            <p> 
-                {{#ergebnis}}
-                    {{ergebnis}}
-                {{/ergebnis}}
+                    {{^ergebnis}}
+                        <em>Gebe die Ergebnisse ein</em>
+                    {{/ergebnis}}
+                </p>
+                <p>
+                    {{#ergebnisString}}
+                        {{ergebnisString}}
+                    {{/ergebnisString}}
 
-                {{^ergebnis}}
-                    <em>Gebe die Ergebnisse ein</em>
-                {{/ergebnis}}
-            </p>
-            <p>
-                {{#ergebnisString}}
-                    {{ergebnisString}}
-                {{/ergebnisString}}
-
-                {{^ergebnisString}}
-                    <em>Gebe die Ergebnisse ein</em>
-                {{/ergebnisString}}
-            </p>
-
+                    {{^ergebnisString}}
+                        <em>Gebe die Ergebnisse ein</em>
+                    {{/ergebnisString}}
+                </p>
+            </div>
         </div>
-
+    </div>
     </body>
 
 </html>

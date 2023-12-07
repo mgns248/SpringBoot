@@ -33,6 +33,9 @@ public class LandingPageController {
         String ergebnisString = examResult.RechnerString();
         boolean ergebnisBoolean = examResult.RechnerBoolean();
 
+        var cssClass = ergebnisBoolean ? "green-background" : "red-background";
+        
+        model.addAttribute("cssClass", cssClass);
         model.addAttribute("ergebnis", ergebnisDouble);
         model.addAttribute("ergebnisString", ergebnisString);
 
