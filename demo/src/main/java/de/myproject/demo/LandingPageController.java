@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class LandingPageController {
     
-    @GetMapping("/")
+    @GetMapping("/test")
     public String start(Model model, Locale locale) {
 
         model.addAttribute("erstesErgebnis", 0);
