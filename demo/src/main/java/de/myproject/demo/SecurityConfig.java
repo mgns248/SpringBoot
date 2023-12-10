@@ -3,17 +3,19 @@ package de.myproject.demo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;  
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import org.springframework.boot.CommandLineRunner;
+
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+class SecurityConfig {
     
     @Bean
     SecurityFilterChain filters(HttpSecurity http) throws Exception {
@@ -23,18 +25,39 @@ public class SecurityConfig {
                 .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated());
 
-        http.formLogin(withDefaults());
+        http.formLogin(form -> form
+                .loginPage("/login")
+                .permitAll());
+
+        http.csrf(csrf -> csrf.disable());
         
         return http.build();
     }
 
     @Bean
-    UserDetailsService UserDetailsService() throws Exception{
-        UserDetails userDetails = User.builder()
-                .username("user")
-                .password("password")
-                .authorities("ROLE_USER")
-                .build();
-        return new InMemoryUserDetailsManager(userDetails);
+    UserDetailsService userDetailsService(UserAccountRepository userAccountRepo){
+        return new UserAccountDetailsService(userAccountRepo);
     }
+
+    @Bean
+    CommandLineRunner createDefaultUsers(UserAccountRepository userAccountRepo) {
+        return args -> {
+            boolean userExists = userAccountRepo.findByUsername("user").isPresent();
+            if(userExists){
+                return;
+            }
+            var newUser = new UserAccount("user", passwordEncoder().encode("password"), "ROLE_USER");
+            userAccountRepo.save(newUser);
+        };
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+   
+
+    
 }
+
