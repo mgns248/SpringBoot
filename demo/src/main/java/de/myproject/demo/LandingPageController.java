@@ -6,19 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Locale;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
 public class LandingPageController {
-
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
-    }
     
-    
-    @GetMapping("/start")
+    @GetMapping("/")
     public String start(Model model, Locale locale) {
 
         model.addAttribute("erstesErgebnis", 0);

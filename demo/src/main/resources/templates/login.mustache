@@ -1,0 +1,54 @@
+<html land="en">
+    
+    <head>
+
+        <meta charset="utf-8">
+        <title>MyProject</title>
+        <meta name="description" content="Awesome!">
+        <meta name="author" content="HAW Hamburg">
+        <link rel="stylesheet" href="/resources/static/index.css">
+        <script src="http://localhost:35729/livereload.js" rel="preload" async></script>
+
+    </head>
+
+    <body>
+    <div class="wrapper">
+        <div class=headers>
+            <div>
+                <h1>{{#i18n}}header1{{/i18n}}</h1>
+            </div>
+
+            <div>
+                <h1>{{#i18n}}header2{{/i18n}}</h1>
+            </div>
+
+            <div>
+                <h1>{{#i18n}}header3{{/i18n}}</h1>
+            </div>
+
+            <div>
+                <h1>{{#i18n}}header4{{/i18n}}</h1>
+            </div>
+        </div>
+
+        <div class="rechner">
+            <form class="form" action="/login" method="POST" accept-charset="utf-8">
+                
+                <div>
+                    <label>Username</label>
+                    <input type="text" id="username" name="username" required/>
+                </div>
+
+                <div>
+                    <label>Password</label>
+                    <input type="password" id="password" name="password" required/>
+                </div>
+
+                <button type="submit">Submit</button>
+
+            </form>
+        </div>
+    </div>
+    </body>
+
+</html>

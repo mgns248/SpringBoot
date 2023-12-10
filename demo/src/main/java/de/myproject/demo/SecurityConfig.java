@@ -9,8 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.config.Customizer.withDefaults;
-
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.boot.CommandLineRunner;
 
 @Configuration
@@ -20,10 +19,11 @@ class SecurityConfig {
     @Bean
     SecurityFilterChain filters(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authz -> authz
-                .requestMatchers("/test").permitAll()
+                .requestMatchers("/").permitAll()
                 .requestMatchers("/result").permitAll()
+                .requestMatchers("/index.css").permitAll()
                 .requestMatchers("/error").permitAll()
-                .anyRequest().authenticated());
+                .anyRequest().denyAll());
 
         http.formLogin(form -> form
                 .loginPage("/login")
@@ -57,7 +57,6 @@ class SecurityConfig {
     }
 
    
-
     
 }
 
